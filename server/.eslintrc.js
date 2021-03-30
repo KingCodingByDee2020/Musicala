@@ -14,19 +14,17 @@ module.exports = {
     "import/no-unresolved": [
       1,
       {
-        ignore: [
-          // TODO: Add/remove 🔥 additional directories that you may want to use for 'absolute imports'
-          "api",
-          "config",
-          "db",
-          "lib",
-        ],
+        ignore: ["api", "config", "db", "lib"],
       },
     ],
+
+    // With 'autofix import' setting - no need!
+    "import/order": 0,
     "import/prefer-default-export": 1,
     "no-debugger": "warn",
     "no-param-reassign": "warn",
     "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
+    "no-process-exit": 1,
     "no-unused-vars": [
       "warn",
       {
@@ -34,6 +32,7 @@ module.exports = {
         varsIgnorePattern: "^_",
       },
     ],
+    "node/no-missing-import": 1,
     "node/no-unsupported-features/es-syntax": [
       "warn",
       {
