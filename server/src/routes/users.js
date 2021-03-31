@@ -14,4 +14,20 @@ router.get("/", async (_, res) => {
   }
 });
 
+router.post("/", async (_, res) => {
+  try {
+    res.json(await db.addNewUser(_.body));
+  } catch (error) {
+    res.status(200).json({ error: error.message });
+  }
+});
+
+router.delete("/", async (req, res) => {
+  try {
+    res.json(await db.deleteUser(req.body.name));
+  } catch (error) {
+    res.status(300).json({ error: error.message });
+  }
+});
+
 export default router;

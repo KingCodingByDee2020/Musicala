@@ -72,7 +72,7 @@ export default {
    * @param {Object} investor
    * @returns {Object}
    */
-  addInvestorToInvestment(investment, investor) {
+  addNewUser(user) {
     try {
       return (
         client
@@ -80,7 +80,7 @@ export default {
           .collection(collection)
 
           // Update an investment that has a `name` of `investment` by pushing `investor`
-          .updateOne({ name: investment }, { $push: { investors: investor } })
+          .insertOne(user)
       );
     } catch (error) {
       throw new Error(error);
@@ -104,7 +104,7 @@ export default {
           {
             $set: {
               // `$` represents the index of the correct item in the array
-              "investors.$": payload,
+              "user.$": payload,
             },
           }
         );
@@ -113,12 +113,9 @@ export default {
     }
   },
 
-  deleteInvestment(investment) {
+  deleteUser(name) {
     try {
-      return client
-        .db(db)
-        .collection(collection)
-        .deleteOne({ name: investment });
+      return client.db(db).collection(collection).deleteOne({ name });
     } catch (error) {
       throw new Error(error);
     }
